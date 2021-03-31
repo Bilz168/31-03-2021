@@ -6,34 +6,23 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.doom_tp.game.world.GameMap;
 
-
-
-public class Enemy1 extends Entity{
-	private static final int SPEED = 80;
-	private static final int JUMP_VELOCITY = 6;
+public class Attack extends Entity{
 	Texture image;
-	private boolean direction = false;
-	protected GameMap map;
 	
-	public Enemy1(float x, float y, GameMap map) {
-		super(x, y, EntityType.PLAYER, map);
-		image = new Texture("Enemy.png");//Enemy Image
+	public Attack(float x, float y, GameMap map) {
+		super(x, y, EntityType.Attack, map);
+		image = new Texture("Circle.png");//Enemy Image
 	}
 
-	@Override //Movement
+	@Override
 	public void update(float deltaTime, float gravity) {
-		super.update(deltaTime, gravity);
-		move();
-	}
-	public void move(){
-		moveEnemy1(1);
+		moveAttack(4);
 	}
 	
 	@Override
 	public void render(SpriteBatch batch) {
 		batch.draw(image, pos.x, pos.y, getWidth(), getHeight());
 	}
-
 	
 	
 }

@@ -19,12 +19,9 @@ public class DoomTP extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-
-		
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		camera.update();
-		
 		gameMap = new TiledGameMap();
 	}
 

@@ -9,8 +9,8 @@ import com.doom_tp.game.world.GameMap;
 
 
 public class Enemy3 extends Entity{
-	private static final int SPEED = 80;
-	private static final int JUMP_VELOCITY = 6;
+	private static final int SPEED = 10;//80
+	private static final int JUMP_VELOCITY = 1;
 	Texture image;
 	private boolean direction = false;
 	protected GameMap map;
@@ -22,10 +22,7 @@ public class Enemy3 extends Entity{
 
 	@Override //Movement
 	public void update(float deltaTime, float gravity) {
-		/*if(Gdx.input.isKeyPressed(Keys.SPACE) && grounded) {
-			this.velocityY += JUMP_VELOCITY * getWeight();
-		}*/
-		super.update(deltaTime, gravity);
+		super.update(deltaTime, -21);
 		move();
 	}
 	public void move(){

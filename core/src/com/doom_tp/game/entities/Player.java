@@ -2,6 +2,7 @@ package com.doom_tp.game.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.doom_tp.game.world.GameMap;
@@ -11,6 +12,7 @@ public class Player extends Entity {
 
 	private static final int SPEED = 80;
 	private static final int JUMP_VELOCITY = 5;
+	private Sound sound; 
 	
 	Texture image;
 	//float spawnRadius;
@@ -18,18 +20,20 @@ public class Player extends Entity {
 	public Player(float x, float y, GameMap map) {
 		super(x, y, EntityType.PLAYER, map);
 		image = new Texture("karlpelab.png");//Enemy Image
+		sound = Gdx.audio.newSound(Gdx.files.internal("Jump effect.wav"));
 	}
-	
-	
 	
 	@Override
 	public void update(float deltaTime, float gravity) {
-		
-		if (Gdx.input.isKeyPressed(Keys.SPACE) && grounded)
+		if (Gdx.input.isKeyPressed(Keys.SPACE) && grounded) {
 			this.velocityY += JUMP_VELOCITY * getWeight();
-		else if (Gdx.input.isKeyPressed(Keys.SPACE) && !grounded && this.velocityY > 0)
+			long id = sound.play(1f);
+			sound.setPitch(id, 2);
+			sound.setLooping(id,false);
+		} else if (Gdx.input.isKeyPressed(Keys.SPACE) && !grounded && this.velocityY > 0) {
 			this.velocityY += JUMP_VELOCITY * getWeight() * deltaTime;
-		
+		}
+			
 		super.update(deltaTime, gravity); // Applies Gravity
 		
 		if (Gdx.input.isKeyPressed(Keys.LEFT))
@@ -38,7 +42,10 @@ public class Player extends Entity {
 		if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
 			moveX(SPEED * deltaTime);
 		}
-			
+	}
+	
+	public float getPlayerX() {
+		return pos.x;
 	}
 
 	@Override

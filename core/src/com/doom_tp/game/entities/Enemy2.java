@@ -18,6 +18,8 @@ public class Enemy2 extends Entity{
 	public Enemy2(float x, float y, GameMap map) {
 		super(x, y, EntityType.PLAYER, map);
 		image = new Texture("Enemy.png");//Enemy Image
+		
+		
 	}
 
 	@Override //Movement
@@ -25,6 +27,7 @@ public class Enemy2 extends Entity{
 		/*if(Gdx.input.isKeyPressed(Keys.SPACE) && grounded) {
 			this.velocityY += JUMP_VELOCITY * getWeight();
 		}*/
+		
 		super.update(deltaTime, gravity);
 		move();
 	}
