@@ -10,12 +10,13 @@ import com.doom_tp.game.world.GameMap;
 @SuppressWarnings("rawtypes")
 public enum EntityType {
 	PLAYER("player", Player.class, 14, 32, 40),
-	Enemy1("Enemy1",Enemy1.class,30,30,40),
-	Enemy2("Enemy2",Enemy2.class,100,100,40),
-	Enemy3("Enemy3",Enemy3.class,100,100,40),
-	Enemy4("Enemy4",Enemy4.class,100,100,40),
-	Enemy5("Enemy5",Enemy5.class,100,100,40),
-	Attack("Attack",Attack.class,30,30,40);
+	Enemy1("Enemy1",Enemy1.class,15,25,100),//Right, On Land
+	Enemy2("Enemy2",Enemy2.class,15,25,100),//Left, Start Area
+	Enemy3("Enemy3",Enemy3.class,15,25,50),//On Lava
+	Enemy4("Enemy4",Enemy4.class,15,25,40),//Falling Down
+	Enemy5("Enemy5",Enemy5.class,15,25,40),//Flying Up
+	Enemy6("Enemy6",Enemy5.class,25,35,0),//Following
+	Attack("Attack",Attack.class,25,20,40);
 	
 	private String id;
 	private Class loaderClass;

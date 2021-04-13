@@ -16,7 +16,7 @@ public class Attack extends Entity{
 
 	@Override
 	public void update(float deltaTime, float gravity) {
-		moveAttack(4);
+		moveAttack(3);
 	}
 	
 	@Override

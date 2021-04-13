@@ -16,7 +16,7 @@ public class Enemy2 extends Entity{
 	protected GameMap map;
 	
 	public Enemy2(float x, float y, GameMap map) {
-		super(x, y, EntityType.PLAYER, map);
+		super(x, y, EntityType.Enemy2, map);
 		image = new Texture("Enemy.png");//Enemy Image
 		
 		

@@ -7,6 +7,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.IntIntMap;
 import com.doom_tp.game.world.GameMap;
 
 
@@ -18,17 +19,13 @@ public abstract class Entity {
 	protected boolean grounded = false;
 	private boolean direction = false;
 	private boolean attackDirection = false;
+	private boolean initialAttack = false;
 	
 	public Entity(float x,float y,EntityType type, GameMap map) {
 		this.pos = new Vector2(x,y);
 		this.type = type;
 		this.map = map;
 	}
-	/*public void create (EntityType type, GameMap map) {
-		this.pos = new Vector2(snapshot.getX(), snapshot.getY());
-		this.type = type;
-		this.map = map;
-	}*/
 	
 	public void update (float deltaTime, float gravity) {
 		float newY = pos.y;
@@ -55,6 +52,7 @@ public abstract class Entity {
 		if (!map.collideMap(newX, pos.y, getWidth(), getHeight())) {
 			this.pos.x = newX;
 		}
+		
 	}
 
 	protected void moveEnemy1(float amount) {
@@ -218,7 +216,7 @@ public abstract class Entity {
 		if (Gdx.input.isKeyPressed(Keys.S)) {
 			attackDirection = false;//Right
 			this.pos.y = map.getPlayerY();
-			this.pos.x = map.getPlayerX()-7;
+			this.pos.x = map.getPlayerX();
 		}else if(Gdx.input.isKeyPressed(Keys.A)){
 			attackDirection = true;//Left
 			this.pos.y = map.getPlayerY();
@@ -227,18 +225,20 @@ public abstract class Entity {
 	}
 	
 	private void moveAttackRight(float amount) {
-		if(map.collideMap(this.pos.x+7, this.pos.y, getWidth(), getHeight())) {
+		if(map.collideMap(this.pos.x, this.pos.y, getWidth(), getHeight())) {
  			this.pos.y = 2000;
 			this.pos.x = 1500;
+		}else {
+			pos.x += amount;
 		}
-		pos.x += amount;
 	}
 	private void moveAttackLeft(float amount) {
-		if(map.collideMap(this.pos.x-9, this.pos.y, getWidth(), getHeight())) {
+		if(map.collideMap(this.pos.x-7, this.pos.y, getWidth(), getHeight())) {
  			this.pos.y = 2000;
 			this.pos.x = 1500;
+		}else {
+			pos.x -= amount;
 		}
-		pos.x -= amount;
 	}
 	
 	public Vector2 getPos() {
